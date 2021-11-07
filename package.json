@@ -1,0 +1,15 @@
+{
+  "name": "kyb-infrastructure",
+  "version": "1.0.0",
+  "description": "KybInfrastructure for JavaScript development environments",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "jest"
+  },
+  "author": "Onur Kayabasi",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
