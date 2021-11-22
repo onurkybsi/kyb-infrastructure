@@ -1,4 +1,4 @@
-import { HttpMethods } from "./HttpMethods";
+import HttpMethods from "./HttpMethods";
 import HttpResponse from "./HttpResponse";
 import axios from "axios";
 import HttpHelper from "./HttpHelper";
@@ -9,9 +9,11 @@ import InvalidParameterError from "../../common/exceptions/InvalidParameterError
  * A simple module for HTTP requests
  */
 export default class HttpClient {
+    private baseURL: string;
+
     constructor(baseURL: string) {
         this.validateBaseUrl(baseURL);
-        axios.defaults.baseURL = baseURL;
+        this.baseURL = baseURL;
     }
 
     private validateBaseUrl(baseURL: string): void {
@@ -33,7 +35,7 @@ export default class HttpClient {
         try {
             let responseFromWebService = await axios.request({
                 method: method,
-                url: path,
+                url: `${this.baseURL}${path}`,
                 data: body,
                 params: params
             });
@@ -70,7 +72,7 @@ export default class HttpClient {
         this.validateSendRequestParameters(path);
         axios.request({
             method: method,
-            url: path,
+            url: `${this.baseURL}${path}`,
             data: data,
             params: params
         })
