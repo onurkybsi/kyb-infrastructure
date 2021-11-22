@@ -2,14 +2,20 @@
   "name": "kyb-infrastructure",
   "version": "1.0.0",
   "description": "KybInfrastructure for JavaScript development environments",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "start": "node ./src/index.js",
-    "test": "jest"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
-  "author": "Onur Kayabasi",
-  "license": "ISC",
+  "files": [
+    "/dist"
+  ],
+  "dependencies": {
+    "axios": "^0.24.0"
+  },
   "devDependencies": {
-    "jest": "^27.3.1"
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7"
   }
 }
