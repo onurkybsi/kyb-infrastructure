@@ -2,11 +2,12 @@ import HttpMethods from "./HttpMethods";
 import HttpResponse from "./HttpResponse";
 import axios from "axios";
 import HttpHelper from "./HttpHelper";
-import { EMPTY_STRING } from "../Constants";
 import InvalidParameterError from "../../common/exceptions/InvalidParameterError";
+import StringHelper from "../StringHelper";
 
 /**
  * A simple module for HTTP requests
+ *  @author Onur Kayabasi
  */
 export default class HttpClient {
     private baseURL: string;
@@ -17,7 +18,7 @@ export default class HttpClient {
     }
 
     private validateBaseUrl(baseURL: string): void {
-        if (baseURL === EMPTY_STRING)
+        if (!StringHelper.isValid(baseURL))
             throw new InvalidParameterError("baseUrl", baseURL);
     }
 
@@ -54,7 +55,7 @@ export default class HttpClient {
     };
 
     private validateSendRequestParameters = (path: string): void => {
-        if (path === EMPTY_STRING)
+        if (!StringHelper.isValid(path))
             throw new InvalidParameterError("baseUrl", path);
     }
 
