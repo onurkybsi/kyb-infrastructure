@@ -1,9 +1,9 @@
 import HttpMethods from "./HttpMethods";
 import HttpResponse from "./HttpResponse";
 import axios from "axios";
-import HttpHelper from "./HttpHelper";
+import HttpHelper from "./HttpUtilities";
 import InvalidParameterError from "../../common/exceptions/InvalidParameterError";
-import StringHelper from "../StringHelper";
+import StringHelper from "../StringUtilities";
 
 /**
  * A simple module for HTTP requests
@@ -45,6 +45,7 @@ export default class HttpClient {
                 isSuccessful: HttpHelper.checkHttpStatusCodeIsSuccessful(
                     responseFromWebService.status
                 ),
+                status: responseFromWebService.status,
                 body: responseFromWebService.data
             }
         } catch (err) {
@@ -78,17 +79,21 @@ export default class HttpClient {
             params: params
         })
             .then(function (responseFromWebService) {
+                if (!callback)
+                    return;
                 callback({
                     isSuccessful: HttpHelper.checkHttpStatusCodeIsSuccessful(
                         responseFromWebService.status
                     ),
+                    status: responseFromWebService.status,
                     body: responseFromWebService.data
                 });
-
             })
             .catch(function (error) {
+                if (!callback)
+                    return;
                 callback({
-                    isSuccessful: false
+                    isSuccessful: false,
                 });
             });
     };

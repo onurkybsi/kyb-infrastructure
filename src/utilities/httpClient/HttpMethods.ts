@@ -1,3 +1,6 @@
+/**
+ * Enum representation for HTTP verbs
+ */
 enum HttpMethods {
     GET = "GET",
     POST = "POST",
