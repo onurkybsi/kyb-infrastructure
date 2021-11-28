@@ -4,4 +4,5 @@ import HttpResponse from "./utilities/httpClient/HttpResponse"
 export { HttpClient, HttpMethods, HttpResponse }
 
 import InvalidParameterError from "./common/exceptions/InvalidParameterError"
-export { InvalidParameterError }
+import ExternalOperationError from "./common/exceptions/ExternalOperationError"
+export { InvalidParameterError, ExternalOperationError }

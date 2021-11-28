@@ -2,7 +2,6 @@
  * Provides various functionalities for HTTP protocol operations
  * @author Onur Kayabasi
  */
-
 import HttpStatusCode from "./HttpStatusCodes";
 
 /**
