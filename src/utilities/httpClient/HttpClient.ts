@@ -59,42 +59,4 @@ export default class HttpClient {
         if (!StringHelper.isValid(path))
             throw new InvalidParameterError("baseUrl", path);
     }
-
-    /**
-     * Sends a HTTP request by parameters
-     * @param {HttpMethods}  method - Method of HTTP request
-     * @param {string}  path - Request path to send
-     * @param {any}  data - Request body
-     * @param {any}  params - Request parameters
-     * @return {Promise<HttpResponse>}  params - Response of request
-     * @author Onur Kayabasi
-     */
-    public SendRequestInBackground = async (method: HttpMethods, path: string, callback: (response: HttpResponse) => void,
-        data: any = undefined, params: any = undefined): Promise<void> => {
-        this.validateSendRequestParameters(path);
-        axios.request({
-            method: method,
-            url: `${this.baseURL}${path}`,
-            data: data,
-            params: params
-        })
-            .then(function (responseFromWebService) {
-                if (!callback)
-                    return;
-                callback({
-                    isSuccessful: HttpHelper.checkHttpStatusCodeIsSuccessful(
-                        responseFromWebService.status
-                    ),
-                    statusCode: responseFromWebService.status,
-                    body: responseFromWebService.data
-                });
-            })
-            .catch(function (error) {
-                if (!callback)
-                    return;
-                callback({
-                    isSuccessful: false,
-                });
-            });
-    };
 }
