@@ -30,6 +30,28 @@ it('SendRequest returns isSuccessful false if an error occures', async () => {
     expect(res.isSuccessful).toEqual(false)
 })
 
+it('SendRequest returns statusCode undefined if an error occures', async () => {
+    // Arrange
+    let client: HttpClient = new HttpClient("https://google.com.tr");
+    let mockAdapter: MockAdapter = new MockAdapter(axios);
+    mockAdapter.onGet('https://google.com.tr/').networkErrorOnce();
+    // Act
+    let res: HttpResponse = await client.SendRequest(HttpMethods.GET, "/");
+    // Assert
+    expect(res.statusCode).toEqual(undefined)
+})
+
+it('SendRequest returns body undefined false if an error occures', async () => {
+    // Arrange
+    let client: HttpClient = new HttpClient("https://google.com.tr");
+    let mockAdapter: MockAdapter = new MockAdapter(axios);
+    mockAdapter.onGet('https://google.com.tr/').networkErrorOnce();
+    // Act
+    let res: HttpResponse = await client.SendRequest(HttpMethods.GET, "/");
+    // Assert
+    expect(res.body).toEqual(undefined)
+})
+
 it('SendRequest returns isSuccessful true if response status code is greater than 200 and less than 300', async () => {
     // Arrange
     let client: HttpClient = new HttpClient("https://google.com.tr");

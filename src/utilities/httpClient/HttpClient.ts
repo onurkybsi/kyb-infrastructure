@@ -50,7 +50,7 @@ export default class HttpClient {
             }
         } catch (err) {
             return {
-                isSuccessful: false
+                isSuccessful: false,
             }
         }
     };
