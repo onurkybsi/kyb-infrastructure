@@ -13,7 +13,7 @@ npm i kyb-infrastructure
 ## Usage
 
 ```javascript
-import { HttpClient } from "kyb-infrastructure"
+import { HttpClient, HttpMethods } from "kyb-infrastructure"
 
 // For example, you can use HttpClient module as follows;
 let httpClient = new HttpClient("https://google.com.tr");
