@@ -45,7 +45,7 @@ export default class HttpClient {
                 isSuccessful: HttpHelper.checkHttpStatusCodeIsSuccessful(
                     responseFromWebService.status
                 ),
-                status: responseFromWebService.status,
+                statusCode: responseFromWebService.status,
                 body: responseFromWebService.data
             }
         } catch (err) {
@@ -85,7 +85,7 @@ export default class HttpClient {
                     isSuccessful: HttpHelper.checkHttpStatusCodeIsSuccessful(
                         responseFromWebService.status
                     ),
-                    status: responseFromWebService.status,
+                    statusCode: responseFromWebService.status,
                     body: responseFromWebService.data
                 });
             })

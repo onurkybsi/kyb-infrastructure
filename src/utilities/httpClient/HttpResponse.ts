@@ -3,6 +3,6 @@
  */
 export default interface HttpResponse {
     isSuccessful: boolean,
-    status?: number,
+    statusCode?: number,
     body?: any
 }

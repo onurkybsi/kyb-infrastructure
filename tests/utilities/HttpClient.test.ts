@@ -2,11 +2,11 @@ import { HttpClient, HttpMethods, HttpResponse, InvalidParameterError } from "..
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-it('Throws InvalidParameterError if baseURL is empty', () => {
+it('HttpClient Throws InvalidParameterError if baseURL is empty', () => {
     expect(() => new HttpClient("")).toThrow(InvalidParameterError);
 })
 
-it('Doesnt throw InvalidParameterError if baseURL is not empty', () => {
+it('HttpClient Doesnt throw InvalidParameterError if baseURL is not empty', () => {
     expect(() => new HttpClient("localhost")).not.toThrowError();
 })
 
@@ -23,9 +23,54 @@ it('SendRequest returns isSuccessful false if an error occures', async () => {
     // Arrange
     let client: HttpClient = new HttpClient("https://google.com.tr");
     let mockAdapter: MockAdapter = new MockAdapter(axios);
-    mockAdapter.onGet('https://google.com.tr').networkErrorOnce();
+    mockAdapter.onGet('https://google.com.tr/').networkErrorOnce();
     // Act
     let res: HttpResponse = await client.SendRequest(HttpMethods.GET, "/");
     // Assert
     expect(res.isSuccessful).toEqual(false)
+})
+
+it('SendRequest returns isSuccessful true if response status code is greater than 200 and less than 300', async () => {
+    // Arrange
+    let client: HttpClient = new HttpClient("https://google.com.tr");
+    let mockAdapter: MockAdapter = new MockAdapter(axios);
+    mockAdapter.onGet('https://google.com.tr/').replyOnce(200);
+    // Act
+    let res: HttpResponse = await client.SendRequest(HttpMethods.GET, "/");
+    // Assert
+    expect(res.isSuccessful).toEqual(true)
+})
+
+it('SendRequest returns statusCode by status code of response returned remote server', async () => {
+    // Arrange
+    let client: HttpClient = new HttpClient("https://google.com.tr");
+    let mockAdapter: MockAdapter = new MockAdapter(axios);
+    mockAdapter.onGet('https://google.com.tr/').replyOnce(200);
+    // Act
+    let res: HttpResponse = await client.SendRequest(HttpMethods.GET, "/");
+    // Assert
+    expect(res.statusCode).toEqual(200)
+})
+
+it('SendRequest returns statusCode by status code of response returned remote server', async () => {
+    // Arrange
+    let client: HttpClient = new HttpClient("https://google.com.tr");
+    let mockAdapter: MockAdapter = new MockAdapter(axios);
+    mockAdapter.onGet('https://google.com.tr/').replyOnce(200);
+    // Act
+    let res: HttpResponse = await client.SendRequest(HttpMethods.GET, "/");
+    // Assert
+    expect(res.statusCode).toEqual(200)
+})
+
+it('SendRequest returns body by body of response returned remote server', async () => {
+    // Arrange
+    let responseBody: any = {};
+    let client: HttpClient = new HttpClient("https://google.com.tr");
+    let mockAdapter: MockAdapter = new MockAdapter(axios);
+    mockAdapter.onGet('https://google.com.tr/').replyOnce(200, responseBody);
+    // Act
+    let res: HttpResponse = await client.SendRequest(HttpMethods.GET, "/");
+    // Assert
+    expect(res.body).toEqual(responseBody)
 })
