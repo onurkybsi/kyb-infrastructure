@@ -3,7 +3,7 @@ import HttpResponse from "./HttpResponse";
 import axios from "axios";
 import HttpHelper from "./HttpUtilities";
 import InvalidParameterError from "../../common/exceptions/InvalidParameterError";
-import StringHelper from "../StringUtilities";
+import * as StringHelper from "../StringUtilities";
 
 /**
  * A simple module for HTTP requests
