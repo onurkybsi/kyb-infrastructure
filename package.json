@@ -1,6 +1,7 @@
 {
   "name": "kyb-infrastructure",
   "version": "1.0.0",
+  "author": "Onur Kayabasi",
   "description": "KybInfrastructure for JavaScript development environments",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

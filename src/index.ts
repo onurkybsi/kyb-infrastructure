@@ -6,3 +6,6 @@ export { HttpClient, HttpMethods, HttpResponse }
 import InvalidParameterError from "./common/exceptions/InvalidParameterError"
 import ExternalOperationError from "./common/exceptions/ExternalOperationError"
 export { InvalidParameterError, ExternalOperationError }
+
+import * as StringUtilities from "./utilities/StringUtilities";
+export { StringUtilities }

@@ -18,4 +18,4 @@ const isValid = (value: string): boolean => {
     return true;
 }
 
-export default { isValid }
+export { isValid }
