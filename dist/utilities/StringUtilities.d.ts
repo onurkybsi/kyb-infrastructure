@@ -7,5 +7,5 @@
  * @param value Any string value
  * @returns true if value is valid
  */
-declare const isValid: (value: string) => boolean;
+declare const isValid: (value: string | null | undefined) => boolean;
 export { isValid };

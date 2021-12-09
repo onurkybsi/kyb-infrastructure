@@ -14,7 +14,7 @@ const EMPTY_STRING = "";
 const isValid = (value) => {
     if (!value)
         return false;
-    if (value === EMPTY_STRING)
+    if (value.trim() === EMPTY_STRING)
         return false;
     return true;
 };
